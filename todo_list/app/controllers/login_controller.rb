@@ -3,10 +3,9 @@ class LoginController < ApplicationController
   end
 
   def login
-    user = User.find_by(username: params[:username])
+    user = User.find_by_username(params[:username])
     if user.password == params[:password]
       session[:id] = user.id
-      puts session[:id]
       redirect_to '/'
     else
       redirect_to'/login/index'
@@ -15,28 +14,26 @@ class LoginController < ApplicationController
    
   end
   def register
-    if params[:password] == params[:confirm_password]
-      @user = User.create(username: params[:username], password: params[:password])
-      session[:id] = @user.id
-      if @user.valid?
-        redirect_to '/'
-      else
-        flash[:errors] = @user.errors.full_messages
-        render 'index'
-      end
-    else
-      render 'index'
+    # Redesigned to be "flatter"
+    @user = User.new(username: params[:username], password: params[:password])
+    if params[:password] != params[:confirm_password]
+      flash[:errors] = ['Passwords do not match']
     end
-
-    # did the user save correctly?
-    # if not, set flash errors
-    # flash[:watevs] = 'ya dun goofed'
-
+    if !user.valid?
+      flash[:errors] = @user.errors.full_messages
+    end
+    if flash[:errors]
+      render 'index'
+    else
+      @user.save
+      session[:id] = @user.id
+      return redirect_to '/'
+    end
   end
+
   def logout
     reset_session
     redirect_to'/login/index'
-
   end
 
 end

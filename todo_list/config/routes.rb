@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   #Login Controller
   get 'login/index'
-  post 'login/' => 'login#login'
+  post 'login' => 'login#login'
   post 'register' => 'login#register'
-  get '/logout' => 'login#logout'
+  get 'logout' => 'login#logout'
 
 
   #Task Controller 
   get 'tasks/index'
-  get 'tasks/add'
+  get 'tasks/add'  # should be /tasks/new
   post 'tasks/create'
   get 'tasks(/:id)/edit' => 'tasks#edit'
   
