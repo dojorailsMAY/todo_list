@@ -12,7 +12,7 @@
             <td><%=task.name%></td>
             <% if task.status == false %>
                 <td><a href="/tasks/<%=task.id%>/edit">Not done</a></td>
-                <td><a href="/tasks/<%=task.id%>" data-method="PATCH">Set To Not done</a></td>
+                <td><a href="/tasks/<%=task.id%>" data-method="PUT">Set To Not done</a></td>
             <% end %>
             <% if task.status == true %>
                 <td><a href="/tasks/<%=task.id%>/edit">Done</a></td>

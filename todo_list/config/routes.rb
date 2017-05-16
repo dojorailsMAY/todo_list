@@ -8,9 +8,10 @@ Rails.application.routes.draw do
 
   #Task Controller 
   get 'tasks/index'
-  get 'tasks/add'  # should be /tasks/new
+  get 'tasks/new'  # should be /tasks/new, not add
   post 'tasks/create'
   get 'tasks(/:id)/edit' => 'tasks#edit'
+  put 'tasks(/:id)' => 'tasks#edit'  # should be put /tasks/:id => tasks#update
   
   root 'tasks#index'
 

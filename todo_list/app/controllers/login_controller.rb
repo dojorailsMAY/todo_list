@@ -19,7 +19,7 @@ class LoginController < ApplicationController
     if params[:password] != params[:confirm_password]
       flash[:errors] = ['Passwords do not match']
     end
-    if !user.valid?
+    if !@user.valid?
       flash[:errors] = @user.errors.full_messages
     end
     if flash[:errors]

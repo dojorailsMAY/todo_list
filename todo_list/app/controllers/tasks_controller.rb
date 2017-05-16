@@ -11,7 +11,7 @@ class TasksController < ApplicationController
   
   end
 
-  def add
+  def new
   end
 
   def create
